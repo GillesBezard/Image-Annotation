@@ -25,7 +25,16 @@ def getNameAndExtension (aGivenFileName):
     extension = pat.search(aGivenFileName).group(2)
     return name, extension
 
+def getName (aGivenFileName):
+    # Just like in a getNameAndExtension, parameter can inlude all king of relative or absolute path before filename
+    # GILLES make it work with other extensions than JPEG... :-(
+    pat = '([^/]+\.jpeg)$'
+    pat = re.compile(pat)
+    fileName = pat.search(aGivenFileName).group(1)
+    return fileName
+
 def getImageAndBBCordinatesFromCSVLine(aLine):
+    # GILLES update code and use getFileName function defined above :-( 
     pat = '([^/]+\.jpeg)$'
     pat = re.compile(pat)
     fileName = pat.search(aLine[0]).group(1)
